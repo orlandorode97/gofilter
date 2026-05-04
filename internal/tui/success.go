@@ -25,7 +25,6 @@ func (m Model) viewSuccess() string {
 			_metaAccentStyle.Render("Fresh file"),
 			_pathSummary(m.layoutW, m.finalOutputPath),
 			"",
-			_dimStyle.Width(hintW).Render("Share it, archive it, run another — your call."),
 		),
 	)
 

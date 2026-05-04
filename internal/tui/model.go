@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 	"time"
 
 	"github.com/charmbracelet/bubbles/progress"
@@ -68,12 +69,26 @@ type Model struct {
 	doneChan     chan string
 }
 
+// pickerRootDir returns GOFILTER_INITIAL_DIR when set and valid; otherwise homeDir (fallback).
+func pickerRootDir(homeDir string) string {
+	if d := strings.TrimSpace(os.Getenv("GOFILTER_INITIAL_DIR")); d != "" {
+		fi, err := os.Stat(d)
+		if err == nil && fi.IsDir() {
+			return filepath.Clean(d)
+		}
+	}
+
+	return homeDir
+}
+
 // NewModel creates a new TUI model with default values.
 func NewModel() Model {
 	homeDir, err := os.UserHomeDir()
 	if err != nil || homeDir == "" {
 		homeDir = "."
 	}
+
+	startPickerAt := pickerRootDir(homeDir)
 
 	layoutW := layoutContentWidth(0)
 
@@ -96,7 +111,7 @@ func NewModel() Model {
 
 	return Model{
 		state:        StateFilePicker,
-		customFP:     NewCustomFilePicker(homeDir),
+		customFP:     NewCustomFilePicker(startPickerAt),
 		filters:      filter.GetFilterList(),
 		outputPath:   ti,
 		defaultPath:  homeDir,

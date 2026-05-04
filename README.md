@@ -1,7 +1,12 @@
-
 # Go Filter
 
 Go Filter is a TUI (Terminal User Interface) tool to transform images with filters like grey-scale, inverted colors, and more.
+
+## Demo
+
+<p align="center">
+  <img src="./gofilter.gif" alt="gofilter TUI walkthrough recorded with VHS" width="720" />
+</p>
 
 ## How to start
 
@@ -15,12 +20,25 @@ cd go-filter
 # Install dependencies
 go mod tidy
 
-# Build project
+# Build project (binary in bin/)
+make build
+
+# Or, without Make:
 cd cmd/gofilter && go build -o gofilter .
 ```
 
 Move the binary to your local environment:
-- Linux/Mac: `sudo mv gofilter /usr/local/bin`
+- Linux/Mac: `sudo mv bin/gofilter /usr/local/bin` (after `make build`), or `sudo mv gofilter /usr/local/bin` if you built inside `cmd/gofilter`.
+
+### Recording the demo GIF
+
+Requires [VHS](https://github.com/charmbracelet/vhs), `ttyd`, and `ffmpeg`. Then:
+
+```bash
+make demo-gif
+```
+
+This refreshes `fixtures/demo.png`, builds `gofilter`, and writes `gofilter.gif` via `gofilter.tape`.
 
 ## Usage
 

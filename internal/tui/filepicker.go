@@ -169,7 +169,6 @@ func (m Model) viewFilePicker() string {
 
 	inner := lipgloss.JoinVertical(
 		lipgloss.Left,
-		_bodyStyle.Render("Pick something worth posting."),
 		"",
 		dirLine,
 		"",

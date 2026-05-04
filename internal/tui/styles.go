@@ -129,11 +129,7 @@ func _brandHeader() string {
 		Bold(true).
 		Render("✦")
 
-	tag := lipgloss.NewStyle().
-		Foreground(lipgloss.Color(_hexMuted)).
-		Render(" snap · stylize · save ")
-
-	return lipgloss.JoinHorizontal(lipgloss.Left, wordmark, " ", flair, "  ", tag)
+	return lipgloss.JoinHorizontal(lipgloss.Left, wordmark, " ", flair)
 }
 
 // _stepRail shows journey progress across four beats.
