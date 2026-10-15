@@ -12,10 +12,10 @@ Go Filter is a TUI (Terminal User Interface) tool to transform images with filte
 
 ```bash
 # Clone the repository
-git clone https://github.com/OrlandoRomo/go-filter.git
+git clone https://github.com/orlandorode97/gofilter.git
 
-# Change directory to go-filter
-cd go-filter
+# Change directory to gofilter
+cd gofilter
 
 # Install dependencies
 go mod tidy
